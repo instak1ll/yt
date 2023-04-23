@@ -14,7 +14,7 @@ def download():
     url = request.form.get("url")
     if not url:
         return "Missing URL", 400
-    file_name = os.path.join(os.path.abspath(os.path.dirname(__file__)), f"{str(uuid.uuid4())}.mp3")
+    file_name = os.path.join(os.getcwd(), f"{str(uuid.uuid4())}.mp3")
     try:
         # Descargar el archivo de audio utilizando ffmpeg
         subprocess.run(["yt-dlp", "-x", "--audio-format", "mp3", "-o", file_name, url], check=True)
@@ -25,7 +25,7 @@ def download():
     finally:
         # Eliminar el archivo descargado
         print("El archivo descargado se encuentra en: ", file_name)
-        return redirect("/")
+        return redirect("/download")
 
 if __name__ == "__main__":
     app.run(debug=True)

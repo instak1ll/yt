@@ -1,7 +1,7 @@
 import os
 import subprocess
 import uuid
-from flask import Flask, request, render_template, send_file, redirect
+from flask import Flask, request, render_template, send_file
 
 app = Flask(__name__)
 
@@ -18,14 +18,13 @@ def download():
     try:
         # Descargar el archivo de audio utilizando ffmpeg
         subprocess.run(["yt-dlp", "-x", "--audio-format", "mp3", "-o", file_name, url], check=True)
-        return send_file(file_name, as_attachment=True, attachment_filename="audio.mp3")
+        return send_file(file_name, as_attachment=True)
     except Exception as e:
         print(e)
         return "Error", 500
     finally:
-        # Eliminar el archivo descargado
+        # Imprimir el mensaje de ruta del archivo descargado
         print("El archivo descargado se encuentra en: ", file_name)
-        return redirect("/download")
 
 if __name__ == "__main__":
     app.run(debug=True)

@@ -5,7 +5,7 @@ const mode = process.env.NODE_ENV === "production" ? "production" : "development
 const base = mode === "production" && isGitHubPages ? "/" + folderName : "/";
 
 export default {
-  root: "src",
+  root: "./templates",
   base,
   mode,
   publicDir: "../public",

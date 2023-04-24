@@ -8,7 +8,7 @@ app = Flask(__name__)
 @app.route("/")
 def index():
     return render_template("index.html")
-@app.route("/", methods=["POST"])
+@app.route("/download", methods=["POST"])
 def download():
     url = request.form.get("url")
     if not url:

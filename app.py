@@ -8,7 +8,7 @@ app = Flask(__name__)
 @app.route("/")
 def index():
     return render_template("index.html")
-@app.route("https://keen-cobbler-dc0e40.netlify.app/", methods=["POST"])
+@app.route("/", methods=["POST"])
 def download():
     url = request.form.get("url")
     if not url:

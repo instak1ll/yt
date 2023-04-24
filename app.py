@@ -24,7 +24,7 @@ def download():
         return "Error", 500
     finally:
         # Imprimir el mensaje de ruta del archivo descargado
-        print("El archivo descargado se encuentra en: ", file_name)
+        os.remove(file_name)
 
 if __name__ == "__main__":
     app.run(debug=True)
